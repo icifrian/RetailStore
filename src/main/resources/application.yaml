@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: retail-store
+  datasource:
+    url: jdbc:h2:mem:retailStore
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    initialize-database: always
+  h2:
+    console:
+      enabled: true
+    
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: "readinessState,discoveryComposite"
+        liveness:
+          include: "livenessState,diskSpace,ping,refreshScope"
+      validate-group-membership: false
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /doc/swagger-ui.html
+  paths-to-exclude: 
+  - /pricesDboes/**
+  - /profile/**

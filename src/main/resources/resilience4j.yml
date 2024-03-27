@@ -1,0 +1,17 @@
+resilience4j:
+  timeLimiter:
+    configs:
+      default:
+        timeoutDuration: 5100ms
+    instances:
+      price-service:
+        baseConfig: default
+  thread-pool-bulkhead:
+    configs:
+      default:
+        core-thread-pool-size: 2
+        max-thread-pool-size: 10
+    instances:
+      price-service:
+        baseConfig: default
+      
